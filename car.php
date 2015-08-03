@@ -1,9 +1,9 @@
 <?php
     class Car
     {
-        public $make_model;
+        private $make_model;
         private $price;
-        public $miles;
+        private $miles;
 
         function __construct($make_model, $miles, $price)
         {
@@ -12,17 +12,28 @@
             $this->cost = $price;
         }
 
-        // function setPrice($new_price)
-        // {
-        //     $this->price = (float) $new_price;
-        // }
+        function setMake($new_make)
+        {
+            $this->name = $new_make;
+        }
+
+        function setPrice($new_price)
+        {
+            $this->cost = (float) $new_price;
+        }
+
+        function setMiles($new_miles)
+        {
+            $this->odometer = $new_miles;
+        }
+
     }
 
     $first_car = new Car("2014 Porsche 911", 7864, 114991);
     $second_car = new Car("2011 Ford F450", 14241, 55995);
     $third_car = new Car("2013 Lexus RX 350", 20000, 44700);
-    $fourth_car = new Car("Mercedes Benz CLS550", 37979, 39900);
-    // $fourth_car->setPrice("706");
+    $fourth_car = new Car("Mercedes Benz CLS550", 37979, 38392);
+    $fourth_car->setPrice("706");
 
     // $porsche = new Car();
     // $porsche->make_model = "2014 Porsche 911";
