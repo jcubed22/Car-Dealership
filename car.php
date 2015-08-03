@@ -76,6 +76,13 @@
 
     $cars = array($first_car, $second_car, $third_car, $fourth_car);
 
+    $cars_matching_search = array();
+    foreach ($cars as $car) {
+        if ($car->cost < $_GET["search_price"] && $car->odometer < $_GET["search_miles"]) {
+            array_push($cars_matching_search, $car);
+        }
+    }
+
 
 ?>
 
@@ -90,7 +97,7 @@
         <h1>Your Car Dealership</h1>
         <ul>
             <?php
-                foreach ($cars as $car) {
+                foreach ($cars_matching_search as $car) {
                     $car_price = $car->getPrice();
                     echo "<div class='row'>
                         <div class='col-md-6'>
