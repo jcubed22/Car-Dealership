@@ -4,12 +4,14 @@
         private $make_model;
         private $price;
         private $miles;
+        private $car_pic;
 
-        function __construct($make_model, $miles, $price)
+        function __construct($make_model, $miles, $price, $car_pic)
         {
             $this->name = $make_model;
             $this->odometer = $miles;
             $this->cost = $price;
+            $this->photo = $car_pic;
         }
 
         function setMake($new_make)
@@ -46,10 +48,10 @@
 
     }
 
-    $first_car = new Car("2014 Porsche 911", 7864, 114991);
-    $second_car = new Car("2011 Ford F450", 14241, 55995);
-    $third_car = new Car("2013 Lexus RX 350", 20000, 44700);
-    $fourth_car = new Car("Mercedes Benz CLS550", 37979, 38392);
+    $first_car = new Car("2014 Porsche 911", 7864, 114991, "img/porsche.jpg");
+    $second_car = new Car("2011 Ford F450", 14241, 55995, "img/ford.jpg");
+    $third_car = new Car("2013 Lexus RX 350", 20000, 44700, "img/lexus.jpg");
+    $fourth_car = new Car("Mercedes Benz CLS550", 37979, 38392, "img/mercedes.jpg");
     $fourth_car->setPrice("706.345897");
 
     // $porsche = new Car();
@@ -80,35 +82,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <title>Your Cars</title>
 </head>
 <body>
-    <h1>Your Car Dealership</h1>
-    <ul>
-        <?php
-            foreach ($cars as $car) {
-                $car_price = $car->getPrice();
-                echo "<div class='row'>
-                    <div class='col-md-6'>
-                        <img src='$car->car_pic'>
+    <div class="container">
+        <h1>Your Car Dealership</h1>
+        <ul>
+            <?php
+                foreach ($cars as $car) {
+                    $car_price = $car->getPrice();
+                    echo "<div class='row'>
+                        <div class='col-md-6'>
+                            <img src='$car->photo'>
+                        </div>
+                        <div class='col-md-6'>
+                            <p>$car->name</p>
+                            <p>Miles: $car->odometer</p>
+                            <p>Price: $$car_price</p>
+                        </div>
                     </div>
-                    <div class='col-md-6'>
-                        <p>$car->name</p>
-                        <p>Miles: $car->odometer</p>
-                        <p>$$car_price</p>
-                    </div>
-                </div>
-                ";
-            }
+                    ";
+                }
 
-            // foreach ($cars as $car) {
-            //     echo "<li> $car->name </li>";
-            //     echo "<ul>";
-            //         echo "<li> $$car->cost </li>";
-            //         echo "<li> Miles: $car->odometer </li>";
-            //     echo "</ul>";
-            // }
-        ?>
-    </ul>
+                // foreach ($cars as $car) {
+                //     echo "<li> $car->name </li>";
+                //     echo "<ul>";
+                //         echo "<li> $$car->cost </li>";
+                //         echo "<li> Miles: $car->odometer </li>";
+                //     echo "</ul>";
+                // }
+            ?>
+        </ul>
+    </div>
 </body>
 </html>
