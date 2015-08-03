@@ -94,22 +94,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Your Car Dealership</h1>
+        <h1>Jordan and Kyle's Janky Car Emporium</h1>
         <ul>
             <?php
-                foreach ($cars_matching_search as $car) {
-                    $car_price = $car->getPrice();
-                    echo "<div class='row'>
-                        <div class='col-md-6'>
-                            <img src='$car->photo'>
+                if (empty($cars_matching_search)) {
+                    echo "<h2>No cars match your search, cheapskate!</h2>";
+
+                } else {
+                    foreach ($cars_matching_search as $car) {
+                        $car_price = $car->getPrice();
+                        echo "<div class='row'>
+                            <div class='col-md-6'>
+                                <img src='$car->photo'>
+                            </div>
+                            <div class='col-md-6'>
+                                <p>$car->name</p>
+                                <p>Miles: $car->odometer</p>
+                                <p>Price: $$car_price</p>
+                            </div>
                         </div>
-                        <div class='col-md-6'>
-                            <p>$car->name</p>
-                            <p>Miles: $car->odometer</p>
-                            <p>Price: $$car_price</p>
-                        </div>
-                    </div>
-                    ";
+                        ";
+                    }
                 }
 
                 // foreach ($cars as $car) {
