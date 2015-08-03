@@ -1,10 +1,10 @@
 <?php
     class Car
     {
-        private $make_model;
-        private $price;
-        private $miles;
-        private $car_pic;
+        private $name;
+        private $cost;
+        private $odometer;
+        private $photo;
 
         function __construct($make_model, $miles, $price, $car_pic)
         {
@@ -18,7 +18,7 @@
         {
             $this->name = $new_make;
         }
-        function setPrice($new_price)
+        function setCost($new_price)
         {
             $float_price = (float) $new_price;
             if ($float_price != 0) {
@@ -35,15 +35,17 @@
         {
             return $this->name;
         }
-
-        function getPrice()
+        function getCost()
         {
             return $this->cost;
         }
-
         function getMiles()
         {
             return $this->odometer;
+        }
+        function getPhoto()
+        {
+            return $this->photo;
         }
 
     }
@@ -52,7 +54,7 @@
     $second_car = new Car("2011 Ford F450", 14241, 55995, "img/ford.jpg");
     $third_car = new Car("2013 Lexus RX 350", 20000, 44700, "img/lexus.jpg");
     $fourth_car = new Car("Mercedes Benz CLS550", 37979, 38392, "img/mercedes.jpg");
-    $fourth_car->setPrice("706.345897");
+    $fourth_car->setCost("706.345897");
 
     // $porsche = new Car();
     // $porsche->make_model = "2014 Porsche 911";
@@ -78,7 +80,9 @@
 
     $cars_matching_search = array();
     foreach ($cars as $car) {
-        if ($car->cost < $_GET["search_price"] && $car->odometer < $_GET["search_miles"]) {
+        $cost_data = $car->getCost();
+        $miles_data = $car->getMiles();
+        if ($car->getCost() <= $_GET["search_price"] && $car->getMiles() <= $_GET["search_miles"]) {
             array_push($cars_matching_search, $car);
         }
     }
@@ -102,14 +106,17 @@
 
                 } else {
                     foreach ($cars_matching_search as $car) {
-                        $car_price = $car->getPrice();
+                        $car_price = $car->getCost();
+                        $car_make = $car->getMake();
+                        $car_miles = $car->getMiles();
+                        $car_photo = $car->getPhoto();
                         echo "<div class='row'>
                             <div class='col-md-6'>
-                                <img src='$car->photo'>
+                                <img src='$car_photo' alt='Photo of $car_make'>
                             </div>
                             <div class='col-md-6'>
-                                <p>$car->name</p>
-                                <p>Miles: $car->odometer</p>
+                                <p>$car_make</p>
+                                <p>Miles: $car_miles</p>
                                 <p>Price: $$car_price</p>
                             </div>
                         </div>
