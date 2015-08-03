@@ -86,6 +86,21 @@
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
+            foreach ($cars as $car) {
+                $car_price = $car->getPrice();
+                echo "<div class='row'>
+                    <div class='col-md-6'>
+                        <img src='$car->car_pic'>
+                    </div>
+                    <div class='col-md-6'>
+                        <p>$car->name</p>
+                        <p>Miles: $car->odometer</p>
+                        <p>$$car_price</p>
+                    </div>
+                </div>
+                ";
+            }
+
             // foreach ($cars as $car) {
             //     echo "<li> $car->name </li>";
             //     echo "<ul>";
