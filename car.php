@@ -16,15 +16,32 @@
         {
             $this->name = $new_make;
         }
-
         function setPrice($new_price)
         {
-            $this->cost = (float) $new_price;
+            $float_price = (float) $new_price;
+            if ($float_price != 0) {
+                $formatted_price = number_format($float_price, 2);
+                $this->cost = $formatted_price;
+            }
         }
-
         function setMiles($new_miles)
         {
             $this->odometer = $new_miles;
+        }
+
+        function getMake()
+        {
+            return $this->name;
+        }
+
+        function getPrice()
+        {
+            return $this->cost;
+        }
+
+        function getMiles()
+        {
+            return $this->odometer;
         }
 
     }
@@ -33,7 +50,7 @@
     $second_car = new Car("2011 Ford F450", 14241, 55995);
     $third_car = new Car("2013 Lexus RX 350", 20000, 44700);
     $fourth_car = new Car("Mercedes Benz CLS550", 37979, 38392);
-    $fourth_car->setPrice("706");
+    $fourth_car->setPrice("706.345897");
 
     // $porsche = new Car();
     // $porsche->make_model = "2014 Porsche 911";
@@ -69,13 +86,13 @@
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-            foreach ($cars as $car) {
-                echo "<li> $car->name </li>";
-                echo "<ul>";
-                    echo "<li> $$car->cost </li>";
-                    echo "<li> Miles: $car->odometer </li>";
-                echo "</ul>";
-            }
+            // foreach ($cars as $car) {
+            //     echo "<li> $car->name </li>";
+            //     echo "<ul>";
+            //         echo "<li> $$car->cost </li>";
+            //         echo "<li> Miles: $car->odometer </li>";
+            //     echo "</ul>";
+            // }
         ?>
     </ul>
 </body>
